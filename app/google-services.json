@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "377066108512",
+    "firebase_url": "https://fitnessband-ded6b.firebaseio.com",
+    "project_id": "fitnessband-ded6b",
+    "storage_bucket": "fitnessband-ded6b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:377066108512:android:0dfef635f782898e",
+        "android_client_info": {
+          "package_name": "org.techtown.fitnessband"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "377066108512-r5dj01nb9nqh3smrpc0m4jt88qvve2pv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.techtown.fitnessband",
+            "certificate_hash": "ee8445960b2691fc2136dc4b652ff05570815c04"
+          }
+        },
+        {
+          "client_id": "377066108512-7phh99037eq1rjoqhg4t1g77jeijnqbj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBwK2uTmtw2gAajZVv6nufrfz4dDjtjrs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "377066108512-7phh99037eq1rjoqhg4t1g77jeijnqbj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

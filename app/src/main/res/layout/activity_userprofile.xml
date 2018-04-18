@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:src="@drawable/userprofile"></ImageView>
+
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="92dp"
+        android:layout_marginTop="250dp"
+        android:text="이름 : "
+        android:textSize="20dp"></TextView>
+
+    <EditText
+        android:id="@+id/userEditText_name"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="240dp"
+        android:layout_toRightOf="@id/tv1"></EditText>
+
+    <TextView
+        android:id="@+id/tv2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv1"
+        android:layout_marginLeft="93dp"
+        android:layout_marginTop="20dp"
+        android:text="나이 : "
+        android:textSize="20dp"></TextView>
+
+    <EditText
+        android:id="@+id/userEditText_age"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/userEditText_name"
+        android:layout_marginLeft="144dp"></EditText>
+
+    <TextView
+        android:id="@+id/tv3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv2"
+        android:layout_marginLeft="75dp"
+        android:layout_marginTop="20dp"
+        android:text="몸무게 : "
+        android:textSize="20dp"></TextView>
+
+    <EditText
+        android:id="@+id/userEditText_weight"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/userEditText_age"
+        android:layout_toRightOf="@id/tv3"></EditText>
+
+    <Button
+        android:id="@+id/userProFile_store_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/userEditText_weight"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="30dp"
+        android:text="저장"
+
+        ></Button>
+
+</RelativeLayout>
