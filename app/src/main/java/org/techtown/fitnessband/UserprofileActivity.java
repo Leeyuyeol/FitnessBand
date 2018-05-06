@@ -1,9 +1,12 @@
 package org.techtown.fitnessband;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -12,7 +15,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserInfo;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.zxing.common.StringUtils;
 
+// 유저 정보 입력 화면
 public class UserprofileActivity extends AppCompatActivity {
 
     private FirebaseDatabase database;
@@ -21,7 +26,7 @@ public class UserprofileActivity extends AppCompatActivity {
     private EditText editText_userName, editText_userAge, editText_userWeight;
     private Button userInfo_button;
     private String name;
-
+    private ConstraintLayout touch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +39,7 @@ public class UserprofileActivity extends AppCompatActivity {
         editText_userName = (EditText)findViewById(R.id.userEditText_name);
         editText_userAge = (EditText)findViewById(R.id.userEditText_age);
         editText_userWeight = (EditText)findViewById(R.id.userEditText_weight);
+        touch = (ConstraintLayout)findViewById(R.id.touch);
 
         getProviderData();
 
@@ -41,19 +47,35 @@ public class UserprofileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                UserINFO user = new UserINFO();
-                user.user_name = editText_userName.getText().toString();
-                user.user_age = editText_userAge.getText().toString();
-                user.user_weight = editText_userWeight.getText().toString();
-                user.user_email = auth.getCurrentUser().getEmail();
+                UserINFO userInfo = new UserINFO();
+                userInfo.user_name = editText_userName.getText().toString();
+                userInfo.user_age = editText_userAge.getText().toString();
+                userInfo.user_weight = editText_userWeight.getText().toString();
+                userInfo.user_email = auth.getCurrentUser().getEmail();
 
-                database.getReference().child(name).setValue(user);
 
-                Toast.makeText(getApplicationContext(), "저장 완료", Toast.LENGTH_SHORT).show();
+                if(userInfo.user_age.length() == 0) {
+                    Toast.makeText(getApplicationContext(), "값을 입력해주세요", Toast.LENGTH_SHORT).show();
+                } else if(userInfo.user_weight.length() == 0 ) {
+                    Toast.makeText(getApplicationContext(), "값을 입력해주세요." , Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "저장 완료", Toast.LENGTH_SHORT).show();
+                    database.getReference().child(name).setValue(userInfo);
+                    Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
 
-                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-                startActivity(intent);
-                finish();
+            }
+        });
+
+        // 레이아웃 클릭시 키보드가 내려가고 editText클릭시 키보드가 올라옴
+        touch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(editText_userAge.getWindowToken(), 0);
+                imm.hideSoftInputFromWindow(editText_userWeight.getWindowToken(), 0);
             }
         });
     }

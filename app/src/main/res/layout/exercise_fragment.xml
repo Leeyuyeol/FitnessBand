@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="10dp">
+
+    <Button
+        android:id="@+id/push_up"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="팔굽혀펴기"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:background="@drawable/fragment_bar"
+        android:textColor="@android:color/black">
+
+    </Button>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="윗몸일으키기"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:background="@drawable/fragment_bar"
+        android:textColor="@android:color/black"
+        ></Button>
+
+    <Button
+        android:id="@+id/squat"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="스쿼트"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:background="@drawable/fragment_bar"
+        android:textColor="@android:color/black"
+        ></Button>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="플랭크"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:background="@drawable/fragment_bar"
+        android:textColor="@android:color/black"
+        ></Button>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="조깅"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:background="@drawable/fragment_bar"
+        android:textColor="@android:color/black"
+        ></Button>
+
+</LinearLayout>

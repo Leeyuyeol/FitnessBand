@@ -31,14 +31,16 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
+
+// 구글,페북 로그인
 public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
     private static final int RC_SIGN_IN = 10;
     private GoogleApiClient mGoogleApiClient;
     private FirebaseAuth mAuth;
 
-    private EditText editText_email, editText_password;
-    private Button email_login_button;
+    //private EditText editText_email, editText_password;
+    //private Button email_login_button;
     private CallbackManager mCallbackManager;
     private FirebaseAuth.AuthStateListener mAuthListener;
     @Override
@@ -47,9 +49,9 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         setContentView(R.layout.activity_login);
         mAuth = FirebaseAuth.getInstance();
 
-        editText_email = (EditText)findViewById(R.id.editText_email);
-        editText_password = (EditText)findViewById(R.id.editText_password);
-        email_login_button = (Button)findViewById(R.id.email_login_button);
+        //editText_email = (EditText)findViewById(R.id.editText_email);
+        //editText_password = (EditText)findViewById(R.id.editText_password);
+        //email_login_button = (Button)findViewById(R.id.email_login_button);
 
         SignInButton button = (SignInButton) findViewById(R.id.login_button);
 
@@ -71,6 +73,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         }
     });
 
+        /*
         // 이메일 버튼 클릭시 createUser 호출
         email_login_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,6 +82,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
             }
         });
+          */
 
         //페이스북 콜백매니저
         mCallbackManager = CallbackManager.Factory.create();
@@ -150,7 +154,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     }
 
 
-    // 이메일 회원가입
+/*
     private void createUser(final String email, final String password) {
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -195,6 +199,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 });
     }
 
+*/
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -212,6 +217,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             }
         }
     }
+
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
 

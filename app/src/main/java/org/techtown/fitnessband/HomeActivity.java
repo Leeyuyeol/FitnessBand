@@ -13,12 +13,17 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.facebook.login.LoginManager;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.FirebaseAuth;
 
+
+// 네비게이션 메인화면
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -26,9 +31,8 @@ public class HomeActivity extends AppCompatActivity
     private TextView emailTextView;
     private FirebaseAuth auth; // 싱글톤 패턴으로 name,email값을 해당 엑티비티에서 가져옴
 
-
-
     private GoogleApiClient mGoogleApiClient;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,14 +40,14 @@ public class HomeActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         auth = FirebaseAuth.getInstance();
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+       /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        }); */
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -55,13 +59,38 @@ public class HomeActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         View view = navigationView.getHeaderView(0);
 
-        nameTextView = (TextView)view.findViewById(R.id.header_name_textView);
-        emailTextView = (TextView)view.findViewById(R.id.header_email_textView);
+        nameTextView = (TextView) view.findViewById(R.id.header_name_textView); // 네비 드로어 헤더부분 사용자이름
+        emailTextView = (TextView) view.findViewById(R.id.header_email_textView); // 네비 드로어 헤더부분 사용자이메일
 
         nameTextView.setText(auth.getCurrentUser().getDisplayName());
         emailTextView.setText(auth.getCurrentUser().getEmail());
 
+
+
+        LinearLayout fitness_button = (LinearLayout) findViewById(R.id.fitness_button); // 프래그먼트 Layout 화면의 아이디정보를 가져옴  "운동"
+        LinearLayout statistics_button = (LinearLayout) findViewById(R.id.statistics_button); // 프래그먼트 Layout 화면의 아이디정보를 가져옴  "통계"
+
+
+        getFragmentManager().beginTransaction().replace(R.id.mainFrame, new ExerciseFragment()).commit();
+
+
+        fitness_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getFragmentManager().beginTransaction().replace(R.id.mainFrame, new ExerciseFragment()).commit();
+            }
+        });
+
+        statistics_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getFragmentManager().beginTransaction().replace(R.id.mainFrame, new StatisticsFragment()).commit();
+            }
+        });
+
+
     }
+
 
     @Override
     public void onBackPressed() {
@@ -120,6 +149,7 @@ public class HomeActivity extends AppCompatActivity
 
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
+            finish();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
