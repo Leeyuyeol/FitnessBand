@@ -1,10 +1,13 @@
 package org.techtown.fitnessband;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -34,7 +37,6 @@ public class UserprofileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_userprofile);
         database = FirebaseDatabase.getInstance();
         auth = FirebaseAuth.getInstance();
-
         userInfo_button = (Button)findViewById(R.id.userProFile_store_button);
         editText_userName = (EditText)findViewById(R.id.userEditText_name);
         editText_userAge = (EditText)findViewById(R.id.userEditText_age);
@@ -60,7 +62,7 @@ public class UserprofileActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "값을 입력해주세요." , Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(getApplicationContext(), "저장 완료", Toast.LENGTH_SHORT).show();
-                    database.getReference().child(name).setValue(userInfo);
+                    database.getReference().child(name).child("UserProfile").setValue(userInfo);
                     Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                     startActivity(intent);
                     finish();
@@ -102,4 +104,33 @@ public class UserprofileActivity extends AppCompatActivity {
         }
 
     }
+
+    // 앱 종료 팝업창
+    public boolean onKeyDown(int keyCode, KeyEvent event){
+        switch(keyCode){
+            case KeyEvent.KEYCODE_BACK:
+                String alertTitle = "알림";
+                String buttonMessage = "어플을 종료하시겠습니까?";
+                String buttonYes = "Yes";
+                String buttonNo = "No";
+
+                new AlertDialog.Builder(UserprofileActivity.this)
+                        .setTitle(alertTitle)
+                        .setMessage(buttonMessage)
+                        .setPositiveButton(buttonYes, new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // TODO Auto-generated method stub
+                                moveTaskToBack(true);
+                                finish();
+                            }
+                        })
+                        .setNegativeButton(buttonNo, null)
+                        .show();
+        }
+        return true;
+
+    }
+
 }

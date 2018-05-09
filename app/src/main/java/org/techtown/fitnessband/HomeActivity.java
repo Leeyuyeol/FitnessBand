@@ -1,5 +1,7 @@
 package org.techtown.fitnessband;
 
+import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -8,8 +10,10 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,6 +34,7 @@ public class HomeActivity extends AppCompatActivity
     private TextView nameTextView;
     private TextView emailTextView;
     private FirebaseAuth auth; // 싱글톤 패턴으로 name,email값을 해당 엑티비티에서 가져옴
+    private Button pushUp_button;
 
     private GoogleApiClient mGoogleApiClient;
 
@@ -65,26 +70,55 @@ public class HomeActivity extends AppCompatActivity
         nameTextView.setText(auth.getCurrentUser().getDisplayName());
         emailTextView.setText(auth.getCurrentUser().getEmail());
 
-
-
-        LinearLayout fitness_button = (LinearLayout) findViewById(R.id.fitness_button); // 프래그먼트 Layout 화면의 아이디정보를 가져옴  "운동"
-        LinearLayout statistics_button = (LinearLayout) findViewById(R.id.statistics_button); // 프래그먼트 Layout 화면의 아이디정보를 가져옴  "통계"
-
-
-        getFragmentManager().beginTransaction().replace(R.id.mainFrame, new ExerciseFragment()).commit();
-
-
-        fitness_button.setOnClickListener(new View.OnClickListener() {
+        Button pushUp = (Button)findViewById(R.id.push_up);
+        pushUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getFragmentManager().beginTransaction().replace(R.id.mainFrame, new ExerciseFragment()).commit();
+                Intent intent = new Intent(getApplicationContext(), PushupExplain.class);
+                startActivity(intent);
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.fade_in); // 화면전환 효과
+
             }
         });
 
-        statistics_button.setOnClickListener(new View.OnClickListener() {
+
+        Button sitUp = (Button)findViewById(R.id.sit_up);
+        sitUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getFragmentManager().beginTransaction().replace(R.id.mainFrame, new StatisticsFragment()).commit();
+                Intent intent = new Intent(getApplicationContext(), SitupExplain.class);
+                startActivity(intent);
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.fade_in); // 화면전환 효과
+            }
+        });
+
+        Button squat = (Button)findViewById(R.id.squat);
+        squat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SquatExplain.class);
+                startActivity(intent);
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.fade_in); // 화면전환 효과
+            }
+        });
+
+        Button plank = (Button)findViewById(R.id.plank);
+        plank.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), PlankExplain.class);
+                startActivity(intent);
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.fade_in); // 화면전환 효과
+            }
+        });
+
+        Button jogging = (Button)findViewById(R.id.jogging);
+        jogging.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), joggingExplain.class);
+                startActivity(intent);
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.fade_in); // 화면전환 효과
             }
         });
 
@@ -145,7 +179,6 @@ public class HomeActivity extends AppCompatActivity
         } else if (id == R.id.nav_logout) {
             auth.signOut();
             LoginManager.getInstance().logOut();
-            finish();
 
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
@@ -155,6 +188,35 @@ public class HomeActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    // 앱 종료 팝업창
+    public boolean onKeyDown(int keyCode, KeyEvent event){
+        switch(keyCode){
+            case KeyEvent.KEYCODE_BACK:
+                String alertTitle = "알림";
+                String buttonMessage = "로그아웃 하시겠습니까?";
+                String buttonYes = "Yes";
+                String buttonNo = "No";
+
+                new AlertDialog.Builder(HomeActivity.this)
+                        .setTitle(alertTitle)
+                        .setMessage(buttonMessage)
+                        .setPositiveButton(buttonYes, new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // TODO Auto-generated method stub
+                                moveTaskToBack(true);
+                                auth.signOut();
+                                finish();
+                            }
+                        })
+                        .setNegativeButton(buttonNo, null)
+                        .show();
+        }
+        return true;
+
     }
 
 

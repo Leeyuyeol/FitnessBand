@@ -11,4 +11,6 @@ public class UserINFO {
     public String user_weight;
     public String user_email;
 
+    public String user_exercise_counting;
+
 }

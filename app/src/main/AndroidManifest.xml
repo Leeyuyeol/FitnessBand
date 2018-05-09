@@ -6,8 +6,8 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:icon="@drawable/push_icon4"
+        android:label="Push"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -46,8 +46,18 @@
             android:name=".HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".PushUpActivity" />
-        <activity android:name=".SquatActivity"></activity>
+        <activity android:name=".PushupExplain" />
+
+        <activity android:name=".SitupExplain"></activity>
+
+        <activity android:name=".SquatExplain"></activity>
+
+        <activity android:name=".PlankExplain"></activity>
+
+        <activity android:name=".joggingExplain"></activity>
+
+        <activity android:name=".PushupCounting"></activity>
+
     </application>
 
 </manifest>

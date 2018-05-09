@@ -1,9 +1,12 @@
 package org.techtown.fitnessband;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -258,5 +261,33 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         if(mAuthListener != null) {
             mAuth.removeAuthStateListener(mAuthListener);
         }
+    }
+
+    // 앱 종료 팝업창
+    public boolean onKeyDown(int keyCode, KeyEvent event){
+        switch(keyCode){
+            case KeyEvent.KEYCODE_BACK:
+                String alertTitle = "알림";
+                String buttonMessage = "어플을 종료하시겠습니까?";
+                String buttonYes = "Yes";
+                String buttonNo = "No";
+
+                new AlertDialog.Builder(LoginActivity.this)
+                        .setTitle(alertTitle)
+                        .setMessage(buttonMessage)
+                        .setPositiveButton(buttonYes, new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // TODO Auto-generated method stub
+                                moveTaskToBack(true);
+                                finish();
+                            }
+                        })
+                        .setNegativeButton(buttonNo, null)
+                        .show();
+        }
+        return true;
+
     }
 }
