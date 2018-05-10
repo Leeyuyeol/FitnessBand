@@ -4,7 +4,7 @@
 
     <!--  버튼 누르고 땔때 색상 조정 -->
     <item android:drawable="@android:color/darker_gray"
-          android:state_pressed="true">
+        android:state_pressed="true">
 
         <shape xmlns:android="http://schemas.android.com/apk/res/android">
 
@@ -26,8 +26,8 @@
 
     <item  android:state_pressed="false">
         <shape xmlns:android="http://schemas.android.com/apk/res/android">
-            <solid android:color="@android:color/holo_orange_light" />
-            <stroke android:width="3dip" android:color="@android:color/holo_orange_light" />
+            <solid android:color="@color/colorAccent" />
+            <stroke android:width="3dip" android:color="@color/colorAccent" />
             <corners android:radius="30dip" />
             <padding android:bottom="0dip" android:left="0dip" android:right="0dip" android:top="0dip" />
 

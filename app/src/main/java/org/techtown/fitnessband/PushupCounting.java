@@ -1,5 +1,6 @@
 package org.techtown.fitnessband;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -24,14 +25,14 @@ import static android.view.View.INVISIBLE;
 
 public class PushupCounting extends AppCompatActivity {
 
-    private ImageButton start_button, stop_button;
-
+    private ImageButton start_button, stop_button, store_button;
     private TextView timer_text;
+
     private Handler mHandler;
     private int mainTime = 0;
     private String strTime;
-
     private String name;
+
     private DatabaseReference mDatabase;
 
     @Override
@@ -43,6 +44,7 @@ public class PushupCounting extends AppCompatActivity {
 
         start_button = (ImageButton) findViewById(R.id.start_button);
         stop_button = (ImageButton) findViewById(R.id.stop_button);
+        store_button = (ImageButton)findViewById(R.id.store_button);
         timer_text = (TextView)findViewById(R.id.timer_text);
 
 
@@ -71,6 +73,18 @@ public class PushupCounting extends AppCompatActivity {
 
                 mDatabase.child(name).child("Exercise_Counting").setValue(user); // 파이어베이스에 시간 값 쓰기
                 mHandler.removeMessages(0);
+            }
+        });
+
+
+        store_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), StoreExercise.class);
+                startActivity(intent);
+                
+
+                finish();
             }
         });
 

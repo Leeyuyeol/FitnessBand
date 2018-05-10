@@ -41,7 +41,7 @@ public class PushupExplain extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), PushupCounting.class);
                 startActivity(intent);
-                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.fade_in);
+
                 finish();
             }
         });

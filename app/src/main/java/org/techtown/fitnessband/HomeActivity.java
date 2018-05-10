@@ -76,7 +76,7 @@ public class HomeActivity extends AppCompatActivity
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), PushupExplain.class);
                 startActivity(intent);
-                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.fade_in); // 화면전환 효과
+                overridePendingTransition(R.anim.anim_side_in_top ,R.anim.anim_fade); // 화면전환 효과
 
             }
         });
@@ -88,7 +88,7 @@ public class HomeActivity extends AppCompatActivity
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), SitupExplain.class);
                 startActivity(intent);
-                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.fade_in); // 화면전환 효과
+                overridePendingTransition(R.anim.anim_side_in_top ,R.anim.anim_fade);// 화면전환 효과
             }
         });
 
@@ -98,7 +98,7 @@ public class HomeActivity extends AppCompatActivity
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), SquatExplain.class);
                 startActivity(intent);
-                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.fade_in); // 화면전환 효과
+                overridePendingTransition(R.anim.anim_side_in_top ,R.anim.anim_fade); // 화면전환 효과
             }
         });
 
@@ -108,7 +108,7 @@ public class HomeActivity extends AppCompatActivity
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), PlankExplain.class);
                 startActivity(intent);
-                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.fade_in); // 화면전환 효과
+                overridePendingTransition(R.anim.anim_side_in_top ,R.anim.anim_fade); // 화면전환 효과
             }
         });
 
@@ -118,7 +118,7 @@ public class HomeActivity extends AppCompatActivity
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), joggingExplain.class);
                 startActivity(intent);
-                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.fade_in); // 화면전환 효과
+                overridePendingTransition(R.anim.anim_side_in_top ,R.anim.anim_fade); // 화면전환 효과
             }
         });
 
