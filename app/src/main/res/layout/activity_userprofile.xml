@@ -13,10 +13,15 @@
         android:layout_width="wrap_content"
         android:layout_height="136dp"
 
+        android:adjustViewBounds="true"
+        android:maxWidth="200dp"
         android:layout_marginBottom="44dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="85dp"
-        android:src="@drawable/human"
+        android:src="@drawable/fitness2"
         app:layout_constraintBottom_toTopOf="@+id/textView7"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"></ImageView>
 
