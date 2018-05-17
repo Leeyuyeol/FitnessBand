@@ -25,10 +25,12 @@ import com.google.firebase.database.ValueEventListener;
 
 public class StoreExercise extends AppCompatActivity {
 
+    private final static double MET = 8.0; // 윗몸, 푸쉬업, 스쿼트 MET
+
     private DatabaseReference databaseReference;
     private FirebaseDatabase firebaseDatabase;
 
-    private TextView timer;
+    private TextView timer, kcal;
     private Button non_store;
 
 
@@ -40,6 +42,7 @@ public class StoreExercise extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.store_exercise);
 
+        kcal = (TextView)findViewById(R.id.kcal);
         timer = (TextView)findViewById(R.id.time_text);
         non_store = (Button)findViewById(R.id.non_store);
 
@@ -48,6 +51,8 @@ public class StoreExercise extends AppCompatActivity {
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference(name);
 
+
+        // DB에서 운동값을 스냅샷으로 찍어서 UserINFO 클래스에 저장 , 즉 저장 값을 가져와서 쓸수 있음
         databaseReference.child(count).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -62,6 +67,32 @@ public class StoreExercise extends AppCompatActivity {
             }
         });
 
+        // DB에서 유저정보 weight 값을 가져와 칼로리를 계산함.
+        databaseReference.child("UserProfile").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                UserINFO user = dataSnapshot.getValue(UserINFO.class);
+                String weight = user.user_weight;
+
+                int min = PushupCounting.min;
+                int sec = PushupCounting.sec;
+                double count = ((min*60) + sec) / 60;
+
+                Double num_weight = Double.parseDouble(weight);
+                Double kcal_cal = ((MET * (3.5 * num_weight * count)) /1000) * 5;
+
+                String kcal_result = String.format("%.0f", kcal_cal);
+                kcal.setText(kcal_result + "kcal");
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+        // 저장 하지않을경우
         non_store.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
