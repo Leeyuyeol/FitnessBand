@@ -1,15 +1,19 @@
 package org.techtown.fitnessband;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -43,7 +47,7 @@ public class PushupCounting extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         start_button = (ImageButton) findViewById(R.id.start_button);
-        stop_button = (ImageButton) findViewById(R.id.stop_button);
+        stop_button = (ImageButton) findViewById(R.id.stop_button2);
         store_button = (ImageButton)findViewById(R.id.store_button);
         timer_text = (TextView)findViewById(R.id.timer_text);
 
@@ -55,6 +59,7 @@ public class PushupCounting extends AppCompatActivity {
                 start_button.setVisibility(INVISIBLE);
                 stop_button.setVisibility(View.VISIBLE);
                 stop_button.setSelected(true);
+                store_button.setEnabled(false);
 
                 mHandler.sendEmptyMessage(1);
             }
@@ -66,6 +71,7 @@ public class PushupCounting extends AppCompatActivity {
                 stop_button.setVisibility(INVISIBLE);
                 start_button.setVisibility(View.VISIBLE);
                 start_button.setSelected(true);
+                store_button.setEnabled(true);
 
                 getProviderData();
                 UserINFO user = new UserINFO();
@@ -73,6 +79,7 @@ public class PushupCounting extends AppCompatActivity {
 
                 mDatabase.child(name).child("Exercise_Counting").setValue(user); // 파이어베이스에 시간 값 쓰기
                 mHandler.removeMessages(0);
+
             }
         });
 
@@ -80,10 +87,9 @@ public class PushupCounting extends AppCompatActivity {
         store_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent intent = new Intent(getApplicationContext(), StoreExercise.class);
                 startActivity(intent);
-                
-
                 finish();
             }
         });
@@ -131,6 +137,5 @@ public class PushupCounting extends AppCompatActivity {
         }
 
     }
-
 }
 

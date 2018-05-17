@@ -115,8 +115,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 FirebaseUser user = firebaseAuth.getCurrentUser();
 
                 if(user != null) {
-                    //로그인이 될경우
-                    Intent intent = new Intent(LoginActivity.this, UserprofileActivity.class);
+                    //로그인 상태일 경우
+                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                     startActivity(intent);
                     finish();
                 } else {
@@ -140,6 +140,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                             // Log.d(TAG, "signInWithCredential:success");
                             // FirebaseUser user = mAuth.getCurrentUser();
                            //  updateUI(user);
+
                             Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
                         } else {
                             // If sign in fails, display a message to the user.
@@ -231,6 +232,9 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                             // Sign in success, update UI with the signed-in user's information
                             // FirebaseUser user = mAuth.getCurrentUser();
                             // updateUI(user);
+                            Intent intent = new Intent(LoginActivity.this, UserprofileActivity.class);
+                            startActivity(intent);
+                            finish();
                             Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
                         } else { //로그인 실패
                             // If sign in fails, display a message to the user.
@@ -250,6 +254,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     @Override
     public void onStart() {
         super.onStart();
+
         mAuth.addAuthStateListener(mAuthListener);
     }
 

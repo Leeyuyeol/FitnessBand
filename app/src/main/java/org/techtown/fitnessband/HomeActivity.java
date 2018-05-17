@@ -195,7 +195,7 @@ public class HomeActivity extends AppCompatActivity
         switch(keyCode){
             case KeyEvent.KEYCODE_BACK:
                 String alertTitle = "알림";
-                String buttonMessage = "로그아웃 하시겠습니까?";
+                String buttonMessage = "어플을 종료하시겠습니까?";
                 String buttonYes = "Yes";
                 String buttonNo = "No";
 

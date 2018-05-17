@@ -18,6 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
         <activity android:name=".LoginActivity" />
 
         <!-- facebook meta data요소 , Facebook에 대한 활동, Chrome 맞춤 탭에 대한 활동 및 인텐트 필터 추가 -->
