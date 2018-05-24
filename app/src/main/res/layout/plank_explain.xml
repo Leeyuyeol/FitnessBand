@@ -253,7 +253,7 @@
                         android:layout_marginLeft="23dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="24kcal"
+                        android:text="11kcal"
                         android:textSize="23dp"
                         android:textStyle="bold"
                         android:textColor="@android:color/holo_blue_light"

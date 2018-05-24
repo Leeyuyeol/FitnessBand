@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -35,6 +36,10 @@ public class PushupCounting extends AppCompatActivity {
     public static int min, sec;
     private DatabaseReference mDatabase;
 
+    private ListView listView;
+    private ListViewAdapter adapter;
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +51,6 @@ public class PushupCounting extends AppCompatActivity {
         stop_button = (ImageButton) findViewById(R.id.stop_button2);
         store_button = (ImageButton)findViewById(R.id.store_button);
         timer_text = (TextView)findViewById(R.id.timer_text);
-
 
 
         start_button.setOnClickListener(new View.OnClickListener() {
@@ -61,6 +65,7 @@ public class PushupCounting extends AppCompatActivity {
             }
         });
 
+        // 정지버튼 클릭 시 시간값 파이어베이스에 저장
         stop_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,7 +84,7 @@ public class PushupCounting extends AppCompatActivity {
             }
         });
 
-
+        // 저장버튼 클릭 시 StoreExercise class 로 이동
         store_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,6 +94,20 @@ public class PushupCounting extends AppCompatActivity {
                 finish();
             }
         });
+
+        adapter = new ListViewAdapter();
+
+        listView = (ListView) findViewById(R.id.list_item);
+        listView.setAdapter(adapter);
+
+        Integer set_number = PushupExplain.plus_minus_count;
+        String count = PushupExplain.count_edit.getText().toString();
+
+        // 설정한 세트만큼 반복하여 리스트 생성
+        for(Integer i=1; i<=set_number; i++) {
+            adapter.addItem(i.toString() + " set", "0 / "+ count);
+        }
+
 
 
         // 타이머 구현

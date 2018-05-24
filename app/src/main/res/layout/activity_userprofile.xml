@@ -71,7 +71,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="90dp"
         android:background="@drawable/shape_button"
-        android:text="운동시작 !"
+        android:text="저장"
         android:textColor="@android:color/black"
         android:textSize="15dp"
         android:textStyle="bold"

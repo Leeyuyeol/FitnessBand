@@ -13,6 +13,14 @@ public class UserINFO {
 
     public String user_exercise_counting;
 
+    public static Integer user_exercise_total = 0;
+    public static Double user_exercise_kcal = 0.0;
+    public static Integer getUser_exercise_time = 0;
+
+
+
+
+
 
 
 }

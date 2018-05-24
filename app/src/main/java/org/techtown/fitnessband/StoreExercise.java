@@ -31,11 +31,12 @@ public class StoreExercise extends AppCompatActivity {
     private FirebaseDatabase firebaseDatabase;
 
     private TextView timer, kcal;
-    private Button non_store;
+    private Button non_store, store_button;
 
-
+    private String kcal_result;
     private String name;
     private String count = "Exercise_Counting";
+    public static  Integer number =  0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,6 +46,7 @@ public class StoreExercise extends AppCompatActivity {
         kcal = (TextView)findViewById(R.id.kcal);
         timer = (TextView)findViewById(R.id.time_text);
         non_store = (Button)findViewById(R.id.non_store);
+        store_button = (Button)findViewById(R.id.store_button);
 
         getProviderData();
 
@@ -81,7 +83,10 @@ public class StoreExercise extends AppCompatActivity {
                 Double num_weight = Double.parseDouble(weight);
                 Double kcal_cal = ((MET * (3.5 * num_weight * count)) /1000) * 5;
 
-                String kcal_result = String.format("%.0f", kcal_cal);
+                UserINFO.user_exercise_kcal += kcal_cal;
+                UserINFO.getUser_exercise_time += sec;
+
+                kcal_result = String.format("%.0f", kcal_cal);
                 kcal.setText(kcal_result + "kcal");
             }
 
@@ -91,6 +96,16 @@ public class StoreExercise extends AppCompatActivity {
             }
         });
 
+        store_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UserINFO.user_exercise_total++;
+
+                Intent intent = new Intent(getApplicationContext(), Exercise_Report.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         // 저장 하지않을경우
         non_store.setOnClickListener(new View.OnClickListener() {
@@ -101,8 +116,7 @@ public class StoreExercise extends AppCompatActivity {
                 finish();
             }
         });
-
-
+        
     }
 
 

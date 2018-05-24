@@ -61,6 +61,11 @@
         <activity android:name=".PushupCounting"></activity>
 
         <activity android:name=".StoreExercise"></activity>
+
+        <activity android:name=".Exercise_Report"></activity>
+
+        <activity android:name=".Material_Calendar"></activity>
+
     </application>
 
 </manifest>

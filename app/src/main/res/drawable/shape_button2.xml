@@ -3,6 +3,21 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!--  버튼 누르고 땔때 색상 조정 -->
+
+    <item android:state_pressed="true">
+
+        <shape xmlns:android="http://schemas.android.com/apk/res/android">
+            <solid android:color="#FF0000"/>
+            <stoke android:width="2dp"
+                android:color="@android:color/holo_orange_light"></stoke>
+            <corners android:radius="30dip"/>
+        </shape>
+
+    </item>
+
+
+
+    <!--
     <item android:drawable="@android:color/darker_gray"
         android:state_pressed="true">
 
@@ -20,9 +35,9 @@
                 android:topRightRadius="12dp"/>
 
         </shape>
-
-
     </item>
+        -->
+
 
     <item  android:state_pressed="false">
         <shape xmlns:android="http://schemas.android.com/apk/res/android">
